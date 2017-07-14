@@ -17,7 +17,16 @@ namespace EatApi.Services
         /// <param name="message">Message.</param>
         public void SendMessage(string message)
         {
-            
+            try
+            {
+                MessageResource.Create(
+                        to: new PhoneNumber("+6591442622"), // To number, if using Sandbox see note above
+                        body: message);
+            } 
+            catch (Exception exception) 
+            {
+                Console.WriteLine(exception.Message);
+            }
         }
     }
 }

@@ -36,8 +36,10 @@ namespace EatApi
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddCors();
             services.AddMvc();
-            services.AddSwaggerGen(c => {
+
+			services.AddSwaggerGen(c => {
 				c.SwaggerDoc("v1", new Info { Title = "Sit 'N' Eat API", Version = "v1" });
             });
 
@@ -66,7 +68,15 @@ namespace EatApi
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
+			app.UseCors(builder =>
+						builder.AllowAnyOrigin()
+                                .AllowAnyMethod()
+							   .AllowAnyHeader()
+				);
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+            
             app.UseMvc();
 
 			// Enable middleware to serve generated Swagger as a JSON endpoint.

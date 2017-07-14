@@ -30,7 +30,7 @@ namespace EatApi.Models
         /// Gets or sets the description.
         /// </summary>
         /// <value>The description.</value>
-        public string Description { get; set; }
+        public string Information { get; set; }
 
         /// <summary>
         /// Gets or sets the photo.
